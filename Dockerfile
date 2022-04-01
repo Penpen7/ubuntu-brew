@@ -8,7 +8,8 @@ RUN apt-get update && \
     file \
     procps \
     build-essential \
-    language-pack-ja 
+    language-pack-ja \
+    expect
 RUN useradd -m -s /bin/bash linuxbrew && \
     usermod -aG sudo linuxbrew &&  \
     mkdir -p /home/linuxbrew/.linuxbrew && \
