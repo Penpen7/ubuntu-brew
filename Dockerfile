@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && \
     apt-get install -y -q --allow-unauthenticated \
     git \
@@ -9,7 +11,8 @@ RUN apt-get update && \
     procps \
     build-essential \
     language-pack-ja \
-    expect
+    expect \
+    zsh
 RUN useradd -m -s /bin/bash linuxbrew && \
     usermod -aG sudo linuxbrew &&  \
     mkdir -p /home/linuxbrew/.linuxbrew && \
@@ -17,3 +20,5 @@ RUN useradd -m -s /bin/bash linuxbrew && \
 USER linuxbrew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ENV PATH /home/linuxbrew/.linuxbrew/bin:$PATH
+
+CMD ["/home/linuxbrew/.linuxbrew/bin/zsh"]
